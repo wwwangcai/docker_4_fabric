@@ -1,0 +1,17 @@
+# This is the default base file for blockchain-explorer
+# https://github.com/yeasy/docker-compose-files
+
+# Depends on the yeasy/blockchain-explorer image.
+
+version: '2'
+
+services:
+  # blockchain-explorer
+  explorer:
+    image: yeasy/blockchain-explorer:latest
+    restart: unless-stopped
+    hostname: explorer
+    environment:
+      - HYP_REST_ENDPOINT=http://10.27.221.190:7050
+    ports:
+      - "9090:9090"

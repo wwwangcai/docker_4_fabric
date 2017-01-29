@@ -1,0 +1,18 @@
+#  vp1: validating node as peer
+#  vp2: validating node as peer
+#  vp3: validating node as peer
+# https://github.com/yeasy/docker-compose-files
+
+version: '2'
+
+services:
+  membersrvc0:
+    extends:
+      file: membersrvc.yml
+      service: membersrvc
+    hostname: membersrvc
+    environment:
+      - CORE_LOGGING_SERVER=debug
+    ports:
+      - "7054:7054"
+    command: membersrvc  # this repeats the default cmd to make sure
