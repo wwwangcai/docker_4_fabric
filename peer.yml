@@ -16,9 +16,8 @@ services:
    #image: hyperledger/fabric-peer:x86_64-0.6.1-preview
    #image: ibmblockchain/fabric-peer:x86_64-0.6.1-preview
     restart: unless-stopped
-    #network_mode: "host"
-    volumes:
-      - /data/home/work/hyperledger:/var/hyperledger
+    network_mode: "host"
+
     environment:
       - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_PEER_NETWORKID=dev
@@ -48,6 +47,7 @@ services:
       - "7059"  # tlsCAA
     volumes: # docker.sock is mapped as the default CORE_VM_ENDPOINT
       - /var/run/docker.sock:/var/run/docker.sock
+      - /data/home/work/hyperledger/:/var/hyperledger/
     command: peer node start  # this repeats the default cmd to make sure
   # command: sh -c "sleep 5; peer node start"  # peer node should have booting delay with CA
 
@@ -56,9 +56,9 @@ services:
       service: vp
     environment:
       - CORE_SECURITY_ENABLED=true
-      #- CORE_PEER_PKI_ECA_PADDR=10.27.221.190:7054
-      #- CORE_PEER_PKI_TCA_PADDR=10.27.221.190:7054
-      #- CORE_PEER_PKI_TLSCA_PADDR=10.27.221.190:7054
-      - CORE_PEER_PKI_ECA_PADDR=membersrvc0:7054
-      - CORE_PEER_PKI_TCA_PADDR=membersrvc0:7054
-      - CORE_PEER_PKI_TLSCA_PADDR=membersrvc0:7054
+      - CORE_PEER_PKI_ECA_PADDR=10.27.221.190:7054
+      - CORE_PEER_PKI_TCA_PADDR=10.27.221.190:7054
+      - CORE_PEER_PKI_TLSCA_PADDR=10.27.221.190:7054
+      #- CORE_PEER_PKI_ECA_PADDR=membersrvc0:7054
+      #- CORE_PEER_PKI_TCA_PADDR=membersrvc0:7054
+      #- CORE_PEER_PKI_TLSCA_PADDR=membersrvc0:7054
