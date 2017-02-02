@@ -1,0 +1,35 @@
+# This compose file will start a cluster with 4 hyperledger peer nodes
+#  vp0: validating node as root
+#  vp1: validating node as peer
+#  vp2: validating node as peer
+#  vp3: validating node as peer
+# https://github.com/yeasy/docker-compose-files
+
+version: '2'
+
+services:
+
+  # validating node
+  vp1:
+    extends:
+      file: peer.yml
+      service: vp_sec
+      #service: vp
+    hostname: vp1
+    environment:
+      - CORE_PEER_ID=vp1
+      - CORE_PEER_DISCOVERY_ROOTNODE=10.27.221.190:7051
+      - CORE_SECURITY_ENROLLID=test_vp32
+      - CORE_SECURITY_ENROLLSECRET=WABL1OUtNAqG
+    ports:
+      - "7050:7050"
+      - "7051:7051"
+      - "7052:7052"
+      - "7053:7053"
+      - "7054:7054"
+      - "7055:7055"
+      - "7056:7056"
+      - "7057:7057"
+      - "7058:7058"
+      - "7059:7059"
+
